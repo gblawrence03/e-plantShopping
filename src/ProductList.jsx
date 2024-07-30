@@ -257,7 +257,8 @@ function ProductList() {
 
     const handleAddToCart = (plant) => {
         dispatch(addItem(plant));
-        setAddedToCart(() => ({...addedToCart, [plant.name]: true}))
+        setAddedToCart((prevAddedToCart) => ({...prevAddedToCart, [plant.name]: true}))
+        console.log(addedToCart[plant.name]);
     }
 
 
@@ -296,7 +297,9 @@ function ProductList() {
                             <img className='product-image' src={plant.image}/>
                             <div className='product-price'>{plant.cost}</div>
                             <em>{plant.description}</em>
-                            <button  className="product-button" onClick={() => handleAddToCart(plant)}>Add to Cart</button>
+                            <button  className="product-button" 
+                            onClick={() => handleAddToCart(plant)}
+                            disabled={addedToCart[plant.name]}>Add to Cart</button>
                                   
                         </div>
                     ))}
